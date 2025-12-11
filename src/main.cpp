@@ -30,7 +30,7 @@ void loop() {
   if (start_autonomous_pressed){
     check_auton_pins();
     update_tracker_values();
-    autonomous_control(50,800,50,800,50,800,300,150,1.2,1.2,3);
+    autonomous_control(50,300,50,300,50,300,225,100,3,1.2,3);
   } else {
     driver_control(true);
     update_accel_vals();

@@ -14,12 +14,12 @@ void setup_tracker(){
 }
 
 void print_tracker_values(){
-    // Serial.print("left:");
-    // Serial.print(left_tracker_val);
-    // Serial.print("|middle:");
-    // Serial.print(middle_tracker_val);
-    // Serial.print("|right:");
-    // Serial.println(right_tracker_val);
+    Serial.print("left:");
+    Serial.print(left_tracker_val);
+    Serial.print("|middle:");
+    Serial.print(middle_tracker_val);
+    Serial.print("|right:");
+    Serial.println(right_tracker_val);
 }
 
 void update_tracker_values(){
@@ -51,7 +51,7 @@ void autonomous_control(int left_low, int left_high, int mid_low, int mid_high, 
     }
 
     if(mid_sees_line){
-        mid_gain = 1;
+        mid_gain = 0.75;
     }
 
 
@@ -81,6 +81,9 @@ void autonomous_control(int left_low, int left_high, int mid_low, int mid_high, 
 
     auton_right_motor_speed = linear_speed + (right_sees_line*base_turn_speed*right_gain*mid_gain);
     auton_left_motor_speed = linear_speed + (left_sees_line*base_turn_speed*left_gain*mid_gain);
+
+    auton_right_motor_speed = constrain(auton_right_motor_speed,0,1023);
+    auton_left_motor_speed = constrain(auton_left_motor_speed,0,1023);
 
     auton_left_motor_speed = 255.0*auton_left_motor_speed/1023.0;
     auton_right_motor_speed = 255.0*auton_right_motor_speed/1023.0;
